@@ -10,31 +10,44 @@ public class Matrix {
     public Matrix(){
         this.setM(0);
         this.setN(0);
-        this.populateDataField(null);
+        this.populateDataField(null, false);
     }
     //initialize MxN empty matrix
     public Matrix(Integer m, Integer n) {
         this.setM(m);
         this.setN(n);
-        this.populateDataField(null);
+        this.populateDataField(null, false);
     }
 
     //initialize matrix from user input data
     public Matrix(Integer[][] inputData) {
         this.setM(inputData.length);
         this.setN(inputData[0].length);
-        this.populateDataField(inputData);
+        this.populateDataField(inputData, false);
     }
 
-    private void populateDataField(Integer[][] inputData) {
+    //constructor for initializing an mxm identity matrix
+    public Matrix(int m) {
+        this.setM(m);
+        this.setN(m);
+        this.populateDataField(null, true);
+    }
+
+    private void populateDataField(Integer[][] inputData, boolean identityMatrix) {
         this.data = new Integer[getM()][getN()];
 
         for(int i = 0; i < this.getM(); i++) {
             for(int j = 0; j < this.getN(); j++) {
-                if(inputData == null) {
+                if(inputData == null && !identityMatrix) {
                     this.data[i][j] = 0;
-                } else {
+                } else if (!identityMatrix) {
                     this.data[i][j] = inputData[i][j];
+                } else {
+                    if(i == j) {
+                        this.data[i][j] = 1;
+                    } else {
+                        this.data[i][j] = 0;
+                    }
                 }
             }
         }
