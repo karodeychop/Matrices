@@ -18,6 +18,6 @@ public class MatrixCalculations {
     }
 
     private static Matrix createAugmentedMatrix(Matrix a, Matrix b){
-
+        return new Matrix();
     }
 }
