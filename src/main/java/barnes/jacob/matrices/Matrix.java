@@ -2,7 +2,7 @@ package barnes.jacob.matrices;
 
 public class Matrix {
 
-    private Integer[][] data;
+    private Double[][] data;
     private Integer m;
     private Integer n;
 
@@ -20,7 +20,7 @@ public class Matrix {
     }
 
     //initialize matrix from user input data
-    public Matrix(Integer[][] inputData) {
+    public Matrix(Double[][] inputData) {
         this.setM(inputData.length);
         this.setN(inputData[0].length);
         this.populateDataField(inputData, false);
@@ -33,20 +33,20 @@ public class Matrix {
         this.populateDataField(null, true);
     }
 
-    private void populateDataField(Integer[][] inputData, boolean identityMatrix) {
-        this.data = new Integer[getM()][getN()];
+    private void populateDataField(Double[][] inputData, boolean identityMatrix) {
+        this.data = new Double[getM()][getN()];
 
         for(int i = 0; i < this.getM(); i++) {
             for(int j = 0; j < this.getN(); j++) {
                 if(inputData == null && !identityMatrix) {
-                    this.data[i][j] = 0;
+                    this.data[i][j] = Double.valueOf(0);
                 } else if (!identityMatrix) {
                     this.data[i][j] = inputData[i][j];
                 } else {
                     if(i == j) {
-                        this.data[i][j] = 1;
+                        this.data[i][j] = Double.valueOf(1);
                     } else {
-                        this.data[i][j] = 0;
+                        this.data[i][j] = Double.valueOf(0);
                     }
                 }
             }
@@ -69,8 +69,11 @@ public class Matrix {
         return this.n;
     }
 
-    public Integer getDataIndex(Integer m, Integer n){
+    public Double getDataIndex(Integer m, Integer n){
         return this.data[m][n];
+    }
+    public void setDataIndex(Integer m, Integer n, Double d) {
+        this.data[m][n] = d;
     }
 
     private String printData(){
